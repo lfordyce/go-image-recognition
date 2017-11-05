@@ -1,0 +1,36 @@
+<div class="content">
+  <div class="box">
+
+    <input #fileUpload type="file" name="file" style="visibility:hidden;" id="fileupload" (change)="onChange($event)" />
+    <div class="">
+      <input type="text" value={{fileName}} id="subfile" class="file-upload-input" readonly>
+      <!-- <button class="file-upload-button" (click)="clearAlertMessage()">Choose Image</button> -->
+      <button class="select-button" (click)="clearAlertMessage()">
+        <i class="material-icons">add_a_photo</i>
+      </button>
+      <!-- <button class="file-upload-button" type="button" [disabled]="!selectedFiles" (click)="analyze()">Upload</button> -->
+      <button class="file-upload-button" type="button" [disabled]="!selectedFiles" (click)="analyze()">
+          <i class="material-icons">file_upload</i>
+      </button>
+    </div>
+    <br>
+    <!-- <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;" [style.width]="(progress/100)*100 + '%'">
+        {{progress}}%
+      </div>
+    </div> -->
+
+    <div *ngIf="post else empty">
+      {{post.filename}}
+      <br>
+      <div *ngFor="let item of post.labels">
+        <ul>
+          <li><strong>Label: </strong>{{item.label}}</li>
+          <li><strong>Probability: </strong>{{item.probability | percent:'2.2-5'}}</li>
+        </ul>
+      </div>
+    </div>
+    <ng-template #empty></ng-template>
+
+  </div>
+</div>
