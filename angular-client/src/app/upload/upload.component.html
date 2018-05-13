@@ -10,7 +10,7 @@
       </button>
       <!-- <button class="file-upload-button" type="button" [disabled]="!selectedFiles" (click)="analyze()">Upload</button> -->
       <button class="file-upload-button" type="button" [disabled]="!selectedFiles" (click)="analyze()">
-          <i class="material-icons">file_upload</i>
+        <i class="material-icons">file_upload</i>
       </button>
     </div>
     <br>
@@ -19,18 +19,21 @@
         {{progress}}%
       </div>
     </div> -->
-
-    <div *ngIf="post else empty">
-      {{post.filename}}
-      <br>
-      <div *ngFor="let item of post.labels">
-        <ul>
-          <li><strong>Label: </strong>{{item.label}}</li>
-          <li><strong>Probability: </strong>{{item.probability | percent:'2.2-5'}}</li>
-        </ul>
-      </div>
-    </div>
-    <ng-template #empty></ng-template>
-
   </div>
 </div>
+
+<app-modal [(visible)]="openModal">
+  <div *ngIf="post else empty">
+    <h1>{{post.filename}}</h1>
+    <br>
+
+    <div *ngFor="let item of post.labels">
+      <ul>
+        <li class="item"><strong>{{item.label}}: </strong> {{item.probability | percent:'2.2-5'}}</li>
+      </ul>
+    </div>
+
+  </div>
+  <ng-template #empty></ng-template>
+  <button (click)="openModal = !openModal" class="select-button">Close</button>
+</app-modal>

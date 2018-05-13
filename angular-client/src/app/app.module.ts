@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
 import { FileDropDirective } from './directives/file-drop.directive';
 import { FileUploadService } from './services/file-upload.service';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
-    FileDropDirective
+    FileDropDirective,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

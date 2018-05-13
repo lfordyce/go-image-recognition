@@ -8,7 +8,7 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as _ from 'lodash';
 
 // Model
-import { Post } from '../model/post';
+import { Post, Label } from '../model/post';
 
 @Component({
   selector: 'app-upload',
@@ -23,6 +23,18 @@ export class UploadComponent implements AfterViewInit {
   imageSrc: any;
   fileName: string;
   post: Post;
+  label: Label;
+  openModal = false;
+
+ mockLabel: Label = {
+   label: 'Bear',
+   probability: 0.9834529
+ };
+
+  mockData: Post = {
+    filename: 'bear.jpg',
+    labels: [this.mockLabel, this.mockLabel, this.mockLabel]
+  };
 
   @ViewChild('fileUpload') fileUploader: ElementRef;
 
@@ -44,16 +56,34 @@ export class UploadComponent implements AfterViewInit {
     }
   }
 
+  // onChange(event) {
+  //   this.selectedFiles = event.target.files;
+  //   console.log(this.selectedFiles);
+  //   const reader = new FileReader();
+  //   reader.onload = (e: any) => {
+  //     this.logo = e.target.result;
+  //   };
+  //   reader.readAsDataURL(event.target.files[0]);
+  //   this.fileName = event.target.files[0].name;
+  //   this.fileName = this.selectedFiles.item(0).name;
+  // }
+
 
   onChange(event) {
     this.selectedFiles = event.target.files;
-    console.log(this.selectedFiles);
-    // this.fileName = event.target.files[0].name;
+
     this.fileName = this.selectedFiles.item(0).name;
   }
 
   clearAlertMessage() {
+    this.post = null;
     this.fileUploader.nativeElement.click();
+    this.fileUploader.nativeElement.value = '';
+  }
+
+  clear() {
+    this.selectedFiles = undefined;
+    this.fileName = '';
     this.fileUploader.nativeElement.value = '';
   }
 
@@ -69,7 +99,6 @@ export class UploadComponent implements AfterViewInit {
         console.log(this.progress.percentage);
       } else if ( event instanceof HttpResponse ) {
         console.log(event.body);
-        // this.data = event.body;
       }
     });
 
@@ -84,7 +113,17 @@ export class UploadComponent implements AfterViewInit {
     this.uploadService.analyzePhoto(this.currentFileUpload).subscribe(data => {
       console.log(data);
       this.post = data;
+      this.openModal = !this.openModal;
     });
+
+    this.selectedFiles = undefined;
+    this.fileName = '';
+    this.fileUploader.nativeElement.value = '';
+  }
+
+  openDialog() {
+    this.openModal = !this.openModal;
+    this.post = this.mockData;
 
     this.selectedFiles = undefined;
     this.fileName = '';

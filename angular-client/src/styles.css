@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+
 *,
 *:after,
 *:before {
@@ -17,7 +21,8 @@
 }
 
 body {
-	font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif; */
+  font-family: 'Raleway', sans-serif;
   /* color: #34495E; */
   color: #37474f;
   /* background-color: #fff; */
@@ -50,7 +55,7 @@ a:focus {
 
 .content {
 	width: 100%;
-	max-width: 800px;
+	max-width: 1100px;
 	text-align: center;
 	margin: 0 auto;
 	padding: 0 0 3em 0;
@@ -69,14 +74,17 @@ a:focus {
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
 	background-color: #ffd54f;
-	padding: 6.25rem 1.25rem;
+  /* padding: 6.25rem 1.25rem; */
+	padding: 3.25rem 1.25rem;
 }
 
 .box:hover {
   /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
   /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
 
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .box + .box {
